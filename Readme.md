@@ -1,141 +1,181 @@
-
----
-
 # Shader3 - Material Lab
 
 ![Shader3-Logo](./media/banner.webp)
 
+`Shader3` is a library that extends and customizes built-in Three.js materials, providing enhanced flexibility and control over 3D rendering. With support for shader customization and a suite of noise functions, it enables the creation of unique visual effects for advanced 3D experiences.
 
-`Shader3` is a library designed to provide new material extensions and customizations for built-in Three.js materials, offering additional flexibility and control over your 3D rendering. It also includes various noise functions for enhanced visual effects.
+## ✨ Features
 
-## Features
+- **Custom Shader Materials:** Extend and customize materials like `MeshPhysicalMaterial` , `MeshDepthMaterial` for your 3D objects.
+- **Shader Customization:** Modify vertex and fragment shaders with ease for fine-tuned rendering effects.
+- **Noise Functions:** A range of noise functions (e.g., Perlin, Simplex) for adding dynamic visual effects to your shaders.
 
-- **Custom Shader Materials:** Extend and customize Three.js materials such as `MeshPhysicalMaterial`, `MeshStandardMaterial`, and `MeshDepthMaterial`.
-- **Shader Customization:** Easily integrate and modify vertex and fragment shaders.
-- **Noise Functions:** Utilize a range of noise functions for creating unique visual effects.
+## 📦 Installation
 
-## Installation
-
-To install `Shader3` via npm:
+Install `Shader3` using your preferred package manager:
 
 ```bash
 npm install shader3
 ```
 
-Or with yarn:
+or   
 
 ```bash
 yarn add shader3
 ```
 
-## Usage
+### Importing Shader3
 
-### Importing
+You can import the full library or specific materials depending on your project needs:
 
 ```typescript
-import * as THREE from "three";
-import {
-  PhysicalShaderMaterial,
-  StandardShaderMaterial,
-  DepthShaderMaterial,
-} from "shader3";
+import * as Shader3 from "shader3"; // Full import
 ```
+
+Or for selective imports:
+
+```typescript
+import { PhysicalShaderMaterial } from "shader3"; // Import specific material
+```
+
+## 🛠️ Usage
 
 ### Creating Custom Materials
 
-![Shader3-Demo](./media/demo.gif)
-
+To create and use a custom material, follow the example below:
 
 ```typescript
+import { PhysicalShaderMaterial } from "shader3";
+
 const material = new PhysicalShaderMaterial({
   vertexShader: `
-    uniform float time; //uniform
+    uniform float time; 
     void main () {
-      vec3 pos = s3_position; // s3_position provides you with xyz of model (vertex position)
-      pos.y += sin((pos.y+time) * 1.0) * .1;
-      s3_position = pos; // update s3_position to apply changes
-`,
+      s3_position.y += sin(s3_position.x + time);
+    }
+  `,
   fragmentShader: `
     uniform float time;
     void main () {
-      gl_FragColor = vec4(mix(vec3(1.0,0.,0.), gl_FragColor.rgb, abs(sin(time))), 1.);
+      gl_FragColor = gl_FragColor * 1.5;
     }
- `,
+  `,
   uniforms: {
     time: { value: 0.0 },
   },
 });
 ```
 
+In this example, the `PhysicalShaderMaterial` is extended with custom vertex and fragment shaders to create a dynamic effect.
 
+![Shader3-Demo](./media/demo.gif)
 
-## Updating Uniform
+### Updating Uniforms
 
-Updating uniform is easy as changing roughness of material:
-
-`Material.uniform.value = value`
+Updating uniforms is as simple as modifying material properties, just like adjusting roughness:
 
 ```typescript
-const animate = () => {
-  const elapsedTime = clock.getElapsedTime();
-
-  uniforms.time.value = elapsedTime; //Updating Time
-
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-};
+material.time = elapsedTime; // Dynamically update time uniform
 ```
 
-## Noise Functions
+## 🌐 Noise Functions
 
-The library includes various noise functions for advanced visual effects. Import and use them as follows:
+Shader3 provides a variety of noise functions to enhance your visual effects. Here's an example using Perlin noise in a vertex shader:
 
 ```typescript
 import { perlin } from "shader3";
 
-// Import `perlin` in your shader code
-
 const vertexShader = `
-uniform float time;
-${perlin} //here we add perlin noise function to our vertex
+${perlin}  // Add Perlin noise function
 void main () {
-  vec3 pos = s3_position;
-  pos.y += perlin(pos+time);
-  s3_position = pos;    
+  s3_position.y += perlin(s3_position);  // Apply noise
 }`;
 ```
 
-## API
+The following noise functions are included by default in Shader3:
+
+### `perlin`
+
+- **Description**: Implements Perlin noise for 2D and 3D vectors.
+- **Functions**:
+  - `perlin(P: vec2): float`  
+    Returns the Perlin noise value for a 2D input vector.
+  - `perlin(P: vec3): float`  
+    Returns the Perlin noise value for a 3D input vector.
+  - `perlin(P: vec3, rep: vec3): float`  
+    Returns repeatable Perlin noise for a 3D input vector with repetition.
+
+### `fbm`
+
+- **Description**: Implements fractal Brownian motion (fBm) noise.
+- **Functions**:
+  - `fbm(P: float): float`  
+    Returns fBm noise for a 1D input.
+  - `fbm(P: vec2): float`  
+    Returns fBm noise for a 2D input.
+  - `fbm(P: vec3): float`  
+    Returns fBm noise for a 3D input.
+  - `fbm(P: vec4): float`  
+    Returns fBm noise for a 4D input.
+
+### `simplex`
+
+- **Description**: Implements Simplex noise for generating smooth gradients in 2D or 3D space.
+- **Functions**:
+  - `simplex(P: vec2): float`  
+    Returns the Simplex noise value for a 2D input vector.
+  - `simplex(P: vec3): float`  
+    Returns the Simplex noise value for a 3D input vector.
+  - `simplex(P: vec4): float`  
+    Returns the Simplex noise value for a 4D input vector.
+  - `simplexFractal(P: vec3): float`  
+    Returns the Simplex Fractal noise value for a 3D input vector.
+
+### `truchetPattern`
+
+- **Description**: Generates a Truchet pattern based on the input values.
+- **Parameters**:
+
+  - `s`: A 2D vector input.
+  - `i`: A floating-point index to determine the pattern variation.
+
+  ```javascript
+  const pattern = truchetPattern(vec2(0.5, 0.8), 2.0);
+  ```
+
+## 📜 Material APIs
+
+Shader3 provides several extended material classes, each supporting custom shaders and uniforms:
 
 ### `PhysicalShaderMaterial`
 
 - Extends `THREE.MeshPhysicalMaterial`.
-- Supports custom vertex and fragment shaders.
-- Accepts additional uniforms.
+- Supports custom vertex and fragment shaders with additional uniform handling.
 
 ### `StandardShaderMaterial`
 
 - Extends `THREE.MeshStandardMaterial`.
-- Supports custom vertex and fragment shaders.
-- Accepts additional uniforms.
+- Customizable vertex and fragment shaders.
 
 ### `DepthShaderMaterial`
 
 - Extends `THREE.MeshDepthMaterial`.
-- Supports custom vertex and fragment shaders.
-- Accepts additional uniforms.
+- Allows shader customization for depth rendering.
 
-## Contributing
+### `MatcapShaderMaterial`
 
-Contributions are welcome! Please open an issue or submit a pull request on the [GitHub repository](https://github.com/your-username/shader3).
+- Extends `THREE.MeshMatcapMaterial`.
+- Full shader and uniform customization support.
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+We welcome contributions! If you have ideas for new features, bug fixes, or improvements, feel free to open an issue or submit a pull request on our [GitHub repository](https://github.com/aayushchouhan24/shader3).
 
-## Acknowledgements
+## 📄 License
 
-- Three.js: [https://threejs.org/](https://threejs.org/)
-- GLSL: [https://en.wikipedia.org/wiki/OpenGL_Shading_Language](https://en.wikipedia.org/wiki/OpenGL_Shading_Language)
+`Shader3` is licensed under the MIT License. For more information, refer to the [LICENSE](LICENSE) file.
 
----
+## 🙌 Acknowledgements
+
+- **[Three.js](https://threejs.org/):** The core library for 3D rendering.
+- **[GLSL](https://en.wikipedia.org/wiki/OpenGL_Shading_Language):** The language used for shader programming.

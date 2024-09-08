@@ -12,14 +12,23 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "dist/shader3.js",
+        file: "dist/shader3.cjs.js",
         format: "cjs",
-        sourcemap: true,
+        sourcemap: false,
       },
       {
         file: "dist/shader3.esm.js",
         format: "esm",
-        sourcemap: true,
+        sourcemap: false,
+      },
+      {
+        file: "dist/shader3.js",
+        format: "umd",
+        name: "Shader3",
+        globals: {
+          three: "THREE",
+        },
+        sourcemap: false,
       },
     ],
     plugins: [

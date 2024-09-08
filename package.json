@@ -1,17 +1,21 @@
 {
   "name": "shader3",
   "version": "1.0.0",
-  "description": "A Three.js materials library offering custom shaders and advanced materials for 3D projects.",
+  "description": "A Three.js materials library with customizable shaders and noise functions.",
   "main": "dist/shader3.cjs.js",
+  "browser": "dist/shader3.js",
   "module": "dist/shader3.esm.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/shader3.d.ts",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/aayushchouhan24/shader3.git"
