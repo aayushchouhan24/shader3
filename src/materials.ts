@@ -74,11 +74,16 @@ function configureShaderMaterial(material: { [key: string]: any }, obj: ShaderMa
               ${mainBody}
               transformed = s3_position;
               #include <project_vertex>`
-      ).replace('#include <normal_vertex>', `{
-              vec3 s3_normal = transformedNormal;
+      ).replace('#include <beginnormal_vertex>', `{
+             '#include <beginnormal_vertex>'
+              vec3 s3_normal = objectNormal;
               ${mainBody.replace(/s3_position/g, 's3_normal')}
-              transformedNormal = s3_normal;
-              #include <normal_vertex>
+              objectNormal = s3_normal;
+              #ifdef USE_TANGENT
+              vec3 s3_tangent = objectNormal;
+              ${mainBody.replace(/s3_position/g, 's3_tangent')}              
+              objectTangent = s3_tangent;
+              #endif
           }`);
     }
 
