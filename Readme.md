@@ -1,6 +1,6 @@
 # Shader3 - Material Lab
 
-![Shader3-Logo](./media/banner.webp)
+![Shader3-Logo](https://bit.ly/shader3-banner)
 
 `Shader3` is a library that extends and customizes built-in Three.js materials, providing enhanced flexibility and control over 3D rendering. With support for shader customization and a suite of noise functions, it enables the creation of unique visual effects for advanced 3D experiences.
 
@@ -53,7 +53,7 @@ Alternatively use the standalone version found in ./dist locally
 
 ### Creating Custom Materials
 
-![Shader3-Demo](./media/demo.gif)
+![Shader3-Demo](https://bit.ly/shader3-demo)
 
 #### [![Usage](https://img.shields.io/badge/Click%20to%20view%20demo-Usage-green?style=for-the-badge&logo=github)](https://shader3.vercel.app/)
 
