@@ -17,12 +17,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/aayushchouhan24/shader3.git"
+    "url": "https://bit.ly/shader3-git"
   },
   "bugs": {
-    "url": "https://github.com/aayushchouhan24/shader3/issues"
+    "url": "https://bit.ly/shader3-issues"
   },
-  "homepage": "https://github.com/username/shader3#readme",
+  "homepage": "https://bit.ly/shader3-home",
   "keywords": [
     "three.js",
     "3D",

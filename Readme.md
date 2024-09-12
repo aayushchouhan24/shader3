@@ -43,7 +43,7 @@ Alternatively use the standalone version found in ./dist locally
 ```html
 <script
   type="text/javascript"
-  src="https://unpkg.com/shader3/dist/Shader3.js"
+  src="https://unpkg.com/shader3/dist/shader3.js"
 ></script>
 
 <!-- This will give Shader3 -->
