@@ -18,7 +18,7 @@ Install `Shader3` using your preferred package manager:
 npm install shader3
 ```
 
-or   
+or
 
 ```bash
 yarn add shader3
@@ -29,25 +29,40 @@ yarn add shader3
 You can import the full library or specific materials depending on your project needs:
 
 ```typescript
-import * as Shader3 from "shader3"; // Full import
+import * as Shader3 from "shader3"; // import all
 ```
 
 Or for selective imports:
 
 ```typescript
-import { PhysicalShaderMaterial } from "shader3"; // Import specific material
+import { PhysicalShaderMaterial } from "shader3"; // import specific material
+```
+
+Alternatively use the standalone version found in ./dist locally
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/shader3/dist/Shader3.js"
+></script>
+
+<!-- This will give Shader3 -->
 ```
 
 ## 🛠️ Usage
 
 ### Creating Custom Materials
 
+![Shader3-Demo](./media/demo.gif)
+
+#### [![Usage](https://img.shields.io/badge/Click%20to%20view%20demo-Usage-green?style=for-the-badge&logo=github)](https://shader3.vercel.app/)
+
 To create and use a custom material, follow the example below:
 
 ```typescript
-import { PhysicalShaderMaterial } from "shader3";
+import * as Shader3 from "shader3"; // import all
 
-const material = new PhysicalShaderMaterial({
+const material = new Shader3.PhysicalShaderMaterial({
   vertexShader: `
     uniform float time; 
     void main () {
@@ -68,8 +83,6 @@ const material = new PhysicalShaderMaterial({
 
 In this example, the `PhysicalShaderMaterial` is extended with custom vertex and fragment shaders to create a dynamic effect.
 
-![Shader3-Demo](./media/demo.gif)
-
 ### Updating Uniforms
 
 Updating uniforms is as simple as modifying material properties, just like adjusting roughness:
@@ -77,6 +90,30 @@ Updating uniforms is as simple as modifying material properties, just like adjus
 ```typescript
 material.time = elapsedTime; // Dynamically update time uniform
 ```
+
+## 📜 Material APIs
+
+Shader3 provides several extended material classes, each supporting custom shaders and uniforms:
+
+### `PhysicalShaderMaterial`
+
+- Extends `THREE.MeshPhysicalMaterial`.
+- Supports custom vertex and fragment shaders with additional uniform handling.
+
+### `StandardShaderMaterial`
+
+- Extends `THREE.MeshStandardMaterial`.
+- Customizable vertex and fragment shaders.
+
+### `DepthShaderMaterial`
+
+- Extends `THREE.MeshDepthMaterial`.
+- Allows shader customization for depth rendering.
+
+### `MatcapShaderMaterial`
+
+- Extends `THREE.MeshMatcapMaterial`.
+- Full shader and uniform customization support.
 
 ## 🌐 Noise Functions
 
@@ -139,33 +176,9 @@ The following noise functions are included by default in Shader3:
   - `s`: A 2D vector input.
   - `i`: A floating-point index to determine the pattern variation.
 
-  ```javascript
-  const pattern = truchetPattern(vec2(0.5, 0.8), 2.0);
+  ```glsl
+  float pattern = truchetPattern(vec2(0.5, 0.8), 2.0);
   ```
-
-## 📜 Material APIs
-
-Shader3 provides several extended material classes, each supporting custom shaders and uniforms:
-
-### `PhysicalShaderMaterial`
-
-- Extends `THREE.MeshPhysicalMaterial`.
-- Supports custom vertex and fragment shaders with additional uniform handling.
-
-### `StandardShaderMaterial`
-
-- Extends `THREE.MeshStandardMaterial`.
-- Customizable vertex and fragment shaders.
-
-### `DepthShaderMaterial`
-
-- Extends `THREE.MeshDepthMaterial`.
-- Allows shader customization for depth rendering.
-
-### `MatcapShaderMaterial`
-
-- Extends `THREE.MeshMatcapMaterial`.
-- Full shader and uniform customization support.
 
 ## 🤝 Contributing
 

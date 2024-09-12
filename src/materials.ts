@@ -74,8 +74,9 @@ function configureShaderMaterial(material: { [key: string]: any }, obj: ShaderMa
               ${mainBody}
               transformed = s3_position;
               #include <project_vertex>`
-      ).replace('#include <beginnormal_vertex>', `{
-             '#include <beginnormal_vertex>'
+      ).replace('#include <beginnormal_vertex>', `
+              #include <beginnormal_vertex>
+             { 
               vec3 s3_normal = objectNormal;
               ${mainBody.replace(/s3_position/g, 's3_normal')}
               objectNormal = s3_normal;
@@ -83,8 +84,8 @@ function configureShaderMaterial(material: { [key: string]: any }, obj: ShaderMa
               vec3 s3_tangent = objectNormal;
               ${mainBody.replace(/s3_position/g, 's3_tangent')}              
               objectTangent = s3_tangent;
-              #endif
-          }`);
+              #endif          
+              }`);
     }
 
     if (fragmentShader) {
