@@ -1,6 +1,6 @@
 {
   "name": "shader3",
-  "version": "1.0.0beta0.2",
+  "version": "1.0.0beta0.3",
   "description": "A Three.js materials library with customizable shaders and noise functions.",
   "main": "dist/shader3.cjs.js",
   "module": "dist/shader3.esm.js",
@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w",
+    "watch": "rollup -c --watch",
     "prepare": "npm run build",
     "clean": "rm -rf dist"
   },
@@ -50,8 +50,10 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/three": "^0.168.0",
+    "chokidar-cli": "^3.0.0",
     "rollup": "^4.21.2",
     "rollup-plugin-dts": "^6.1.1",
+    "rollup-pluginutils": "^2.8.2",
     "tslib": "^2.7.0",
     "typescript": "^5.5.4"
   }

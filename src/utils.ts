@@ -5,3 +5,6 @@ export const processShader = (shaderCode: string, shaderType: 'vertex' | 'fragme
     const mainBody = body.trim().slice(0, -1).replace('{', '___|Temp|___').split('___|Temp|___')[1];
     return { header, mainBody };
 };
+
+
+

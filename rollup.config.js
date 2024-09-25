@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript"
 import terser from "@rollup/plugin-terser"
 import babel from "@rollup/plugin-babel"
 import dts from "rollup-plugin-dts"
+import glsl from './glsl.js'
 
 const extensions = [".js", ".ts"]
 
@@ -35,6 +36,7 @@ export default [
       resolve(),
       commonjs(),
       typescript(),
+      glsl({ include: '**/*.glsl' }),
       babel({
         babelHelpers: "runtime",
         extensions,
@@ -44,6 +46,10 @@ export default [
       terser(),
     ],
     external: ["three", "@babel/runtime"],
+    watch: {
+      include: 'src/**', // Watch all files in the src directory
+      exclude: 'node_modules/**', // Exclude node_modules
+    },
   },
   {
     input: "src/index.ts",
@@ -51,6 +57,9 @@ export default [
       file: "dist/shader3.d.ts",
       format: "es",
     },
-    plugins: [dts()],
+    plugins: [dts(), glsl({ include: '**/*.glsl' }),],
+    watch: {
+      include: 'src/**',
+    },
   },
 ]

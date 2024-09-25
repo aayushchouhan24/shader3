@@ -6,29 +6,64 @@ interface ShaderMaterialParams extends THREE.ShaderMaterialParameters {
     vertexShader?: string;
     fragmentShader?: string;
 }
-interface PhysicalShaderMaterialParams extends THREE.MeshPhysicalMaterialParameters, ShaderMaterialParams {
+interface MeshPhysicalMaterialParams extends THREE.MeshPhysicalMaterialParameters, ShaderMaterialParams {
 }
-interface StandardShaderMaterialParams extends THREE.MeshStandardMaterialParameters, ShaderMaterialParams {
+interface MeshStandardMaterialParams extends THREE.MeshStandardMaterialParameters, ShaderMaterialParams {
 }
-interface DepthShaderMaterialParams extends THREE.MeshDepthMaterialParameters, ShaderMaterialParams {
+interface MeshDepthMaterialParams extends THREE.MeshDepthMaterialParameters, ShaderMaterialParams {
 }
-interface MatcapShaderMaterialParams extends THREE.MeshMatcapMaterial {
+interface MeshMatcapMaterialParameters extends THREE.MeshMatcapMaterialParameters {
     uniforms?: {
         [uniform: string]: THREE.IUniform;
     };
     vertexShader?: string;
     fragmentShader?: string;
 }
-export declare class PhysicalShaderMaterial extends THREE.MeshPhysicalMaterial {
-    constructor(parameters?: PhysicalShaderMaterialParams);
+interface MeshHolographicMaterialParams extends THREE.ShaderMaterialParameters {
+    frame?: number;
+    useMap?: boolean;
+    map?: THREE.Texture;
+    color?: string;
+    stripCountMultiplier?: number;
+    fresnelExponent?: number;
+    holographicOffsetAmount?: number;
+    smoothstepEdgeStart?: number;
+    smoothstepEdgeEnd?: number;
+    glitchStrength?: number;
+    glitchMin?: number;
+    glitchMax?: number;
+    glitchFrequencyLow?: number;
+    glitchFrequencyMid?: number;
+    glitchFrequencyHigh?: number;
 }
-export declare class StandardShaderMaterial extends THREE.MeshStandardMaterial {
-    constructor(parameters?: StandardShaderMaterialParams);
+export declare class MeshStandardMaterial extends THREE.MeshStandardMaterial {
+    constructor(parameters?: MeshStandardMaterialParams);
 }
-export declare class DepthShaderMaterial extends THREE.MeshDepthMaterial {
-    constructor(parameters?: DepthShaderMaterialParams);
+export declare class MeshPhysicalMaterial extends THREE.MeshPhysicalMaterial {
+    constructor(parameters?: MeshPhysicalMaterialParams);
 }
-export declare class MatcapShaderMaterial extends THREE.MeshMatcapMaterial {
-    constructor(parameters?: MatcapShaderMaterialParams);
+export declare class MeshDepthMaterial extends THREE.MeshDepthMaterial {
+    constructor(parameters?: MeshDepthMaterialParams);
+}
+export declare class MeshMatcapMaterial extends THREE.MeshMatcapMaterial {
+    constructor(parameters?: MeshMatcapMaterialParameters);
+}
+export declare class MeshHolographicMaterial extends THREE.ShaderMaterial {
+    frame?: number;
+    map?: THREE.Texture;
+    color?: string;
+    stripCountMultiplier?: number;
+    fresnelExponent?: number;
+    holographicOffsetAmount?: number;
+    smoothstepEdgeStart?: number;
+    smoothstepEdgeEnd?: number;
+    glitchStrength?: number;
+    glitchMin?: number;
+    glitchMax?: number;
+    glitchFrequencyLow?: number;
+    glitchFrequencyMid?: number;
+    glitchFrequencyHigh?: number;
+    constructor(parameters?: MeshHolographicMaterialParams);
+    private setupUniformProperties;
 }
 export {};
