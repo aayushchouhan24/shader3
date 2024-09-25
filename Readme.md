@@ -180,7 +180,7 @@ See the Three.js [Shader Material](https://threejs.org/docs/?q=shader#api/en/mat
 
 ### 📜Creating Custom Materials
 
-![Shader3-Demo](https://bit.ly/shader3-demo)
+![Shader3-Demo](https://ik.imagekit.io/technoaayush/shader3/demo.gif)
 
 #### [![Usage](https://img.shields.io/badge/Click%20to%20view%20demo-Usage-green?style=for-the-badge&logo=github)](https://shader3.vercel.app/)
 
