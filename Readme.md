@@ -87,7 +87,7 @@ const sphere = new THREE.Mesh(new THREE.SphereGeometry(), material);
 
 ### Constructor
 
-###### `MeshHolographicMaterial( parameters : Object )`
+##### `MeshHolographicMaterial( parameters : Object )`
 
 `parameters` - (optional) an object with one or more properties defining the material's appearance. Any property of the ShaderMaterial (including any property inherited from Material) can be passed in here.
 
@@ -180,7 +180,7 @@ See the Three.js [Shader Material](https://threejs.org/docs/?q=shader#api/en/mat
 
 ### 📜Creating Custom Materials
 
-![Shader3-Demo](https://bit.ly/shader3-demo)
+![Shader3-Demo](https://ik.imagekit.io/technoaayush/shader3/demo.gif)
 
 #### [![Usage](https://img.shields.io/badge/Click%20to%20view%20demo-Usage-green?style=for-the-badge&logo=github)](https://shader3.vercel.app/)
 
@@ -220,7 +220,7 @@ Shader3 provides several extended materials, each supporting custom shaders and 
 
 ### Constructor
 
-###### `TypeShaderMaterial( parameters : Object )`
+##### `TypeShaderMaterial( parameters : Object )`
 
 `parameters` - (optional) an object with one or more properties defining the material's appearance. Any property of the MeshTypeMaterial (including any property inherited from Material) can be passed in here.
 
