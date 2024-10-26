@@ -1,6 +1,6 @@
 {
   "name": "shader3",
-  "version": "1.0.0beta0.8",
+  "version": "1.0.0beta1.0",
   "description": "A Three.js materials library with customizable shaders and noise functions.",
   "main": "dist/shader3.cjs.js",
   "module": "dist/shader3.esm.js",
