@@ -1,4 +1,5 @@
 #include ./math.glsl
+#include ./noise.glsl
 
 float o=8.;
 float f(float x){float v=0.,a=.5,s=100.;for(int i=0;i<o;++i){v+=a*noise(x);x=x*2.+s;a*=.5;}return v;}
