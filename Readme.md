@@ -334,7 +334,7 @@ We welcome contributions! If you have ideas for new features, bug fixes, or impr
 
 ## 📄 License
 
-`Shader3` is licensed under the MIT License. For more information, refer to the [LICENSE](LICENSE) file.
+`Shader3` is licensed under the ICS License. For more information, refer to the [LICENSE](LICENSE) file.
 
 ## 🙌 Acknowledgements
 
